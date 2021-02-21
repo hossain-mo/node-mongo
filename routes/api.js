@@ -40,7 +40,7 @@ router.post('/follows',function(req,res,next){
 
 router.get('/follows',function(req,res,next){
     // res.send(req.query.user_name)
-    Follow.find().populate("followed").then(function(follows){
+    Follow.find({'username' : req.query.user_name}).populate("followed").then(function(follows){
         res.send(follows);
     }).catch(next);
 });

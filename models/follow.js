@@ -10,6 +10,7 @@ const followSchema = new Schema({
     followed: {
         type: Schema.Types.ObjectId,
         ref: 'users'
+        
     },
     
 });
