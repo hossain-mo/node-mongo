@@ -8,7 +8,7 @@ const cors = require("cors");
 
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:3000/ourdata');
+mongoose.connect('mongodb://localhost:27017/music-recommendation');
 
 mongoose.Promise = global.Promise;
 

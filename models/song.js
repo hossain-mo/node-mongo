@@ -14,6 +14,7 @@ const SongSchema = new Schema({
     },
     mood: {
         type: String,
+        enum : ['Happiness','Sadness', 'Fear', 'Disgust', 'Anger', 'Surprise']
     },
     occasion: {
         type: String,
@@ -26,5 +27,5 @@ const SongSchema = new Schema({
     }
 });
 
-const Song = mongoose.model('song',SongSchema);
+const Song = mongoose.model('songs',SongSchema);
 module.exports = Song;
