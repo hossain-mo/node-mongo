@@ -27,7 +27,7 @@ router.get('/users',function(req,res,next){
 router.post('/users',function(req,res,next){
     User.create(req.body).then(function(users){
         Song.find({'mood' : req.body.mood}, '-_id song_name').then(function(songs){
-            res.send(songs);
+            res.send(songs.map( elements => elements.song_name));
         }).catch(next);
     }).catch(next);
 });
@@ -41,7 +41,10 @@ router.post('/follows',function(req,res,next){
 router.get('/follows',function(req,res,next){
     // res.send(req.query.user_name)
     Follow.find({'username' : req.query.user_name}).populate("followed").then(function(follows){
-        res.send(follows);
+        const moods = follows.map( element => element.followed.mood)
+        Song.find({}, '-_id song_name').where('mood').in(moods).then(function(songs){
+            res.send(songs.map( elements => elements.song_name));
+        }).catch(next);
     }).catch(next);
 });
 
